@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Sparrow
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "z8zVK7XXbRDo36lgm6JCVuchMdwmcFeuiWyF9seW"
+            $0.clientKey = "Dssoolu82DWkuSMlIaMPPfI30ttsCFMXFdJS3u4r"
+            $0.server = "https://parseapi.back4app.com/"
+        }
+        
+        
+        
+        SPLaunchAnimation.asTwitter(onWindow: self.window!)
+        
         return true
     }
 

@@ -7,14 +7,41 @@
 //
 
 import UIKit
+import Parse
 
 class MondayDetailsViewController: UIViewController {
-
+    @IBOutlet weak var detailsText: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
+        
 
         // Do any additional setup after loading the view.
     }
+    
+    func loadData() {
+        
+        let query = PFQuery(className: "textDetails")
+        
+        query.limit = 1000
+        
+        query.whereKey("buttonTag", equalTo: self.buttonTag)
+        
+        query.findObjectsInBackground { (objects, error) in
+            
+            if let theObjects = objects {
+                
+                let buttonDetails = theObjects.first
+                
+                self.detailsText.text = buttonDetails?.object(forKey: "curriculumText") as? String
+                
+            }
+            
+        }
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
